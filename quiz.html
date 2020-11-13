@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Francois+One&family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #1E1E36;
+        }
+        
+        .navbar {
+            background-color: #1E1E36;
+            box-shadow: 0px 0px 10px 2px #303150;
+        }
+        
+        .navbar-brand {
+            font-family: 'Righteous', cursive;
+            font-size: 23px;
+        }
+        
+        .question {
+            font-family: sans-serif;
+        }
+        
+        .answer-section {
+            background-color: #303150;
+        }
+        
+        .custom-control-input:checked~.custom-control-label::before {
+            background-color: darkorange !important;
+            border: darkorange !important;
+        }
+        
+        .custom-control-input:focus~.custom-control-label::before {
+            box-shadow: none !important;
+        }
+        
+        .start {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .start img {
+            width: 400px;
+        }
+        
+        .question-no {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <span class="navbar-brand text-light p-2">Quizest</span>
+
+    </nav>
+
+    <div class="container mt-5">
+        <div class="answer-section p-4 mt-4 d-none">
+            <div class='container start'>
+                <img src="./web_developer_isometric.svg" alt="">
+                <h5 class="text-light my-3">Welcome to our Quiz platform</h5>
+                <button class="btn btn-sm btn-warning rounde-0 px-4">Start Quiz</button>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <div class="question-section d-flex">
+                <div class="badge badge-primary rounded-circle p-3"><span class='question-no'>01</span></div>
+                <h4 class="text-light question mt-2 ml-3">What is the full form of css</h4>
+            </div>
+
+            <div class="answer-section p-4 mt-4">
+                <form action="" class="">
+                    <div class="custom-control custom-radio mb-2">
+                        <input type="radio" id="customRadioInline1" name="answer" class="custom-control-input">
+                        <label class="custom-control-label text-light" for="customRadioInline1">Javascript</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-2">
+                        <input type="radio" id="customRadioInline2" name="answer" class="custom-control-input">
+                        <label class="custom-control-label text-light" for="customRadioInline2">Java</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-2">
+                        <input type="radio" id="customRadioInline3" name="answer" class="custom-control-input">
+                        <label class="custom-control-label text-light" for="customRadioInline3">HTML</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-2">
+                        <input type="radio" id="customRadioInline4" name="answer" class="custom-control-input">
+                        <label class="custom-control-label text-light" for="customRadioInline4">None of these</label>
+                    </div>
+                    <button class="btn btn-warning rounded-0 btn-sm px-4 mt-4">Submit</button>
+                    <button class="btn btn-success rounded-0 btn-sm px-4 mt-4">Next</button>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>
