@@ -12,6 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="node_modules/confetti-js/dist/index.min.js"></script>
     <style>
         body {
             background-color: #1E1E36;
@@ -58,6 +59,15 @@
         .question-no {
             font-size: 18px;
         }
+        
+        .question-no-div {
+            width: 40px;
+            height: 40px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -66,49 +76,128 @@
         <span class="navbar-brand text-light p-2">Quizest</span>
 
     </nav>
+    <canvas id="my-canvas"></canvas>
 
     <div class="container mt-5">
-        <div class="answer-section p-4 mt-4 d-none">
+        <div class="answer-section p-4 mt-4 d-none" id="start">
             <div class='container start'>
                 <img src="./web_developer_isometric.svg" alt="">
                 <h5 class="text-light my-3">Welcome to our Quiz platform</h5>
-                <button class="btn btn-sm btn-warning rounde-0 px-4">Start Quiz</button>
+                <button class="btn btn-sm btn-warning rounde-0 px-4 start">Start Quiz</button>
             </div>
         </div>
 
-        <div class="main-container">
+        <div class="main-container" id="quiz1">
             <div class="question-section d-flex">
-                <div class="badge badge-primary rounded-circle p-3"><span class='question-no'>01</span></div>
+                <div class="question-no-div bg-primary rounded-circle p-3"><span class='question-no font-weight-bold'>01</span></div>
                 <h4 class="text-light question mt-2 ml-3">What is the full form of css</h4>
             </div>
 
             <div class="answer-section p-4 mt-4">
                 <form action="" class="">
                     <div class="custom-control custom-radio mb-2">
-                        <input type="radio" id="customRadioInline1" name="answer" class="custom-control-input">
-                        <label class="custom-control-label text-light" for="customRadioInline1">Javascript</label>
+                        <input type="radio" id="quiz-1-answer-1" name="answer" class="custom-control-input">
+                        <label class="custom-control-label text-light" for="quiz-1-answer-1">Javascript</label>
                     </div>
                     <div class="custom-control custom-radio mb-2">
-                        <input type="radio" id="customRadioInline2" name="answer" class="custom-control-input">
-                        <label class="custom-control-label text-light" for="customRadioInline2">Java</label>
+                        <input type="radio" id="quiz-1-answer-2" name="answer" class="custom-control-input">
+                        <label class="custom-control-label text-light" for="quiz-1-answer-2">Java</label>
                     </div>
                     <div class="custom-control custom-radio mb-2">
-                        <input type="radio" id="customRadioInline3" name="answer" class="custom-control-input">
-                        <label class="custom-control-label text-light" for="customRadioInline3">HTML</label>
+                        <input type="radio" id="quiz-1-answer-3" name="answer" class="custom-control-input">
+                        <label class="custom-control-label text-light" for="quiz-1-answer-3">HTML</label>
                     </div>
                     <div class="custom-control custom-radio mb-2">
-                        <input type="radio" id="customRadioInline4" name="answer" class="custom-control-input">
-                        <label class="custom-control-label text-light" for="customRadioInline4">None of these</label>
+                        <input type="radio" id="quiz-1-answer-4" name="answer" class="custom-control-input">
+                        <label class="custom-control-label text-light" for="quiz-1-answer-4">None of these</label>
                     </div>
                     <button class="btn btn-warning rounded-0 btn-sm px-4 mt-4">Submit</button>
-                    <button class="btn btn-success rounded-0 btn-sm px-4 mt-4">Next</button>
+                    <button class="btn btn-success rounded-0 btn-sm px-4 mt-4 float-right" id="next1">Next <i class="fa fa-chevron-circle-right ml-2"></i></button>
                 </form>
             </div>
 
 
         </div>
+        <div class="main-container d-none" id="quiz2">
+            <div class="question-section d-flex">
+                <div class="badge badge-primary rounded-circle p-3"><span class='question-no font-weight-bold'>02</span></div>
+                <h4 class="text-light question mt-3 ml-3">A complete grap can have</h4>
+            </div>
+            <div class="answer-section p-4 mt-4 ">
+                <form action="" class="">
+                    <div class="custom-control custom-radio mb-2">
+                        <input type="radio" id="quiz-2-answer-1" name="answer2" class="custom-control-input">
+                        <label class="custom-control-label text-light" for="quiz-2-answer-1">n2 spanning trees</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-2">
+                        <input type="radio" id="quiz-2-answer-2" name="answer2" class="custom-control-input">
+                        <label class="custom-control-label text-light" for="quiz-2-answer-2">nn - 2 spanning trees</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-2">
+                        <input type="radio" id="quiz-2-answer-3" name="answer2" class="custom-control-input">
+                        <label class="custom-control-label text-light" for="quiz-2-answer-3">nn - 2 spanning trees</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-2">
+                        <input type="radio" id="quiz-2-answer-4" name="answer2" class="custom-control-input">
+                        <label class="custom-control-label text-light" for="quiz-2-answer-4">nn - 2 spanning trees</label>
+                    </div>
+                    <button class="btn btn-warning rounded-0 btn-sm px-4 mt-4">Submit</button>
+                    <button class="btn btn-success rounded-0 btn-sm px-4 mt-4 float-right" id="next2">Next<i class="fa fa-chevron-circle-right ml-2"></i></button>
+                    <button class="btn btn-primary rounded-0 btn-sm px-4 mt-4 float-right mx-2" id="prev1"><i class="fa fa-chevron-circle-left mr-2"></i>Prev</button>
+                </form>
+            </div>
+        </div>
     </div>
+    <script>
+        //   confetti.stop();
 
+        const startit = () => {
+            setTimeout(function() {
+                console.log("start");
+                confetti.start();
+            }, 1000);
+        };
+
+        const stopit = () => {
+            setTimeout(function() {
+                console.log("stop");
+                confetti.stop();
+            }, 6000);
+        };
+
+        startit();
+        stopit();
+    </script>
+
+
+    <script>
+        // var confettiElement = document.getElementById('my-canvas');
+        // var confettiSettings = {
+        //     target: confettiElement
+        // };
+        // var confetti = new ConfettiGenerator(confettiSettings);
+        // confetti.render();
+
+
+        $(document).ready(function() {
+            $(".start").click(function(e) {
+                e.preventDefault();
+                $("#start").addClass('d-none');
+                $("#quiz1").removeClass("d-none");
+            });
+
+            $("#next1").click(function(e) {
+                e.preventDefault();
+                $("#quiz1").addClass("d-none");
+                $("#quiz2").removeClass("d-none");
+            });
+            $("#prev1").click(function(e) {
+                e.preventDefault();
+                $("#quiz2").addClass("d-none");
+                $("#quiz1").removeClass("d-none");
+            });
+        });
+    </script>
 </body>
 
 </html>
