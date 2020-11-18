@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Francois+One&family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="node_modules/confetti-js/dist/index.min.js"></script>
+    <style>
+        body {
+            background-color: #1E1E36;
+        }
+        
+        .navbar {
+            background-color: #1E1E36;
+            box-shadow: 0px 0px 10px 2px #303150;
+        }
+        
+        .navbar-brand {
+            font-family: 'Righteous', cursive;
+            font-size: 23px;
+        }
+        
+        .question {
+            font-family: sans-serif;
+        }
+        
+        .answer-section {
+            background-color: #303150;
+        }
+        
+        .custom-control-input:checked~.custom-control-label::before {
+            background-color: darkorange !important;
+            border: darkorange !important;
+        }
+        
+        .custom-control-input:focus~.custom-control-label::before {
+            box-shadow: none !important;
+        }
+        
+        .start {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .start img {
+            width: 400px;
+        }
+        
+        .question-no {
+            font-size: 18px;
+        }
+        
+        .question-no-div {
+            width: 40px;
+            height: 40px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <span class="navbar-brand text-light p-2">Quizest</span>
+    </nav>
+    <div class="container mt-5">
+
+        <div class="answer-section p-4 mt-4 d-none" id="start">
+            <div class='container start'>
+                <img src="./web_developer_isometric.svg" alt="">
+                <h5 class="text-light my-3">Welcome to our Quiz platform</h5>
+                <button class="btn btn-sm btn-warning rounde-0 px-4 start">Start Quiz</button>
+            </div>
+        </div>
+
+        <div class="main">
+
+        </div>
+
+
+
+    </div>
+
+
+    <script>
+        var questions = [{
+            question: "What is the full form of css?",
+            answers: ['Javascript', 'Java', 'HTML', "None of these"],
+            answer: "Sourav"
+        }, {
+            question: "What is success color?",
+            answers: ['Red', 'Black', 'Green', "White"],
+            answer: "Green"
+        }, {
+            question: "What is js?",
+            answers: ['java', 'css', 'java script', "html"],
+            answer: "java script"
+        }];
+        $(document).ready(function() {
+            var i = 0;
+            for (i = 0; i <= questions.length; i++) {
+                var no = i + 1;
+                var que = questions[i].question;
+                var ans = questions[i].answer;
+                var radio = ""
+
+                for (var j = 0; j < questions[i].answers.length; j++) {
+                    radio += "<div class='custom-control custom-radio mb-2 ans-value'><input type='radio' id='quiz-" + i + "-answer-" + j + "' name='answer" + i + "' class='custom-control-input' value='" + questions[i].answers[j] + "'><label class='custom-control-label text-light' for='quiz-" + i + "-answer-" + j + "'>" + questions[i].answers[j] + "</label></div>";
+                }
+
+
+                $(".main").append("<div class='main-container d-none' id='quiz" + no + "'><div class='question-section d-flex'><div class='question-no-div bg-primary rounded-circle p-3'><span class='question-no font-weight-bold'>" + no + "</span></div><h4 class='text-light question mt-2 ml-3'>" + que + "<span class='ml-5 status'></span></h4></div><div class='answer-section p-4 mt-4 pb-5'><form action='' class=''>" + radio + "<button type='submit' class='btn btn-warning rounded-0 btn-sm px-4 mt-4 view' question='" + i + "'>View Answer</button></form><button class='btn btn-success rounded-0 btn-sm px-4 float-right' id='next" + no + "'>Next <i class='fa fa-chevron-circle-right ml-2'></i></button> </div></div>");
+            };
+        });
+        $(document).ready(function() {
+
+            $(".view").each(function() {
+                $(this).click(function(e) {
+                    e.preventDefault();
+                    var questionId = $(this).attr('question');
+                    var name = "answer" + questionId;
+                    var ans = $("input[name=" + name + "]:checked").val();
+
+                    var write_ans = questions[questionId].answer;
+
+                    if (write_ans == ans) {
+                        $(".status").html("");
+                        $(".status").html("<div class='badge badge-success p-2'>Correct</div>")
+                    } else {
+                        $(".status").html("");
+                        $(".status").html("<div class='badge badge-danger p-2'>Incorrect</div>")
+                    }
+                })
+            });
+
+
+
+        })
+
+
+        $(document).ready(function() {
+            $("#quiz1").removeClass("d-none");
+            var i = 1;
+            
+            $("#next1").click(function(e) {
+                $(".status").html("");
+                e.preventDefault();
+                $("#quiz1").addClass("d-none");
+                $("#quiz2").removeClass("d-none");
+            });
+
+            $("#next2").click(function(e) {
+                $(".status").html("");
+                e.preventDefault();
+                $("#quiz2").addClass("d-none");
+                $("#quiz3").removeClass("d-none");
+            });
+        });
+    </script>
+
+</body>
+
+</html>
